@@ -333,3 +333,11 @@ ASALocalRun/
 .waveengine/
 WaveContent.cs
 !**/Content/**/*.obj
+
+# ASP.NET/.NET Wasm
+**/wwwroot/lib
+**/wwwroot/managed
+**/wwwroot/*.deps.json
+**/wwwroot/content.*
+**/wwwroot/dotnet.*
+**/wwwroot/runtime.js
