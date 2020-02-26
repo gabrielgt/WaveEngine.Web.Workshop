@@ -34,12 +34,12 @@ Items:
       - !WaveEngine.Framework.Graphics.Camera3D,WaveEngine.Framework
         Id: 387b28e8-9a1d-4aba-9c25-01eb3fbaac6c
         Aperture: 1.0
-        AspectRatio: -1.0
+        AspectRatio: 1.04511273
         BackgroundColor:
           A: 255
-          B: 237
-          G: 149
-          R: 100
+          B: 255
+          G: 255
+          R: 255
         CameraOrder: 0.0
         ClearDepth: 1.0
         ClearFlags: All
@@ -50,7 +50,7 @@ Items:
           MaxDepth: 1.0
           MinDepth: 0.0
         DisplayTag: null
-        DisplayTagDirty: true
+        DisplayTagDirty: false
         Exposure: 1.00000012
         FarPlane: 1000.0
         FieldOfView: 0.785398185
@@ -59,10 +59,10 @@ Items:
         LayerMaskDefaultValue: true
         NearPlane: 0.100000001
         ScreenViewport:
-          Height: 0.0
-          MaxDepth: 0.0
+          Height: 266.0
+          MaxDepth: 1.0
           MinDepth: 0.0
-          Width: 0.0
+          Width: 278.0
           X: 0.0
           Y: 0.0
         Sensitivity: 100.0
