@@ -1,0 +1,63 @@
+!WaveEngine.Assets.Exporters.ModelMetaFile,WaveEngine.Assets
+Id: 8d45d7ca-a16e-4871-b390-7fa63c448575
+Clips: []
+DefaultProfile:
+  ExcludeAsset: false
+  Name: null
+  Platform: Undefined
+ExportAnimations: true
+ExportAsRaw: false
+GenerateTangentSpace: false
+Profiles: {}
+Source:
+  Header:
+    Id: 84f90b93-ac99-485b-84ce-e015b45b6eed
+    IsCompressed: true
+  LastModified: 0001-01-01T00:00:00.0000000
+  ModelInfo:
+    Id: 15ae524f-2c5e-4461-99b3-61ba22c6e967
+    AnimationTracks: []
+    EmbeddedResources: null
+    Materials:
+      - Item1: 'Material #145'
+        Item2: cd2f1e37-ff8f-4c39-9fba-3bb59eb3c81a
+      - Item1: Pilastras_Balaustras
+        Item2: 0eed4cfb-f0f5-4f0e-8704-8aefa39e2eff
+      - Item1: 'Material #147'
+        Item2: 685e3020-f6d9-4d2d-9682-bcae728219fe
+      - Item1: 'Material #148'
+        Item2: 04a37e10-3acb-4d39-b865-cf1ac12c01a5
+      - Item1: 'Material #149'
+        Item2: 5c86f43b-71c3-4017-836d-51e535911d73
+      - Item1: Resto_panos
+        Item2: a57ded15-183e-4b0a-94a4-95acb89218b6
+      - Item1: panos_lat_front
+        Item2: a748bacf-e771-4057-9763-dfba2b707acf
+      - Item1: 'Material #146'
+        Item2: 09328b09-99ba-4d11-aec0-844bae79bd96
+      - Item1: 'Material #150'
+        Item2: faf477cd-4f8d-4357-b77c-8a41e0087831
+      - Item1: Escudos_Capiteles
+        Item2: e2a5bfd8-5c99-455b-87b9-425baece5155
+      - Item1: 'Material #151'
+        Item2: d2046bd4-4359-42ee-8730-5f081a5152be
+      - Item1: barandillas
+        Item2: f5bf27b3-8c33-42be-88cc-d7274ffbf9b9
+      - Item1: Bajo_Techo_Bordes
+        Item2: e912397a-5bbf-4c03-b9f4-99425de3a7ea
+    Nodes:
+      - RootNode
+      - RootNode.LM0_Suelo
+      - RootNode.LM2_Pilastras_Balaustras
+      - RootNode.LM1_Fachadas_ladrillos
+      - RootNode.Pared_Gradas_Cemento
+      - RootNode.Tejado
+      - RootNode.resto_panos
+      - RootNode.panos_lat_front
+      - RootNode.Oscuridad
+      - RootNode.Fronton_ladrillos_g
+      - RootNode.Capiteles_barrotes
+      - RootNode.Emblemas
+      - RootNode.baranda_interior
+      - RootNode.Bajo_Techo_Bordes
+SwapWindingOrder: false
