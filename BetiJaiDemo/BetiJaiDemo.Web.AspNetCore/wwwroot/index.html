@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+
+            html {
+                overflow: hidden;
+            }
+
+            #splash {
+                background: white;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                text-align: center;
+                top: 0;
+                width: 100%;
+            }
+
+            #splash > #splash-content {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .progress {
+                margin: 0 auto;
+                width: 160px;
+            }
+
+            .progress-bar {
+                background-color: #0f72e8;
+                border-radius: 4px;
+                height: 8px;
+                width: 0%;
+            }
+
+            .progress-infinite .progress-bar {
+                animation: kitt 1s ease infinite;
+                background-image: linear-gradient(to right, #0f72e8 0%, white 50%, #0f72e8 100%);
+                background-size: 300% 100%;
+                width: 100%;
+            }
+
+            @keyframes kitt {
+                0% {
+                    background-position: 0% 50%
+                }
+
+                50% {
+                    background-position: 100% 50%
+                }
+
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+        </style>
+        <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="runtime.js"></script>
+        <script type="text/javascript" src="content.js"></script>
+        <script defer type="text/javascript" src="mono.js"></script>
+    </head>
+    <body>
+        <canvas id="wave-engine-canvas" oncontextmenu="return false;" tabindex="1"></canvas>
+
+        <div id="splash">
+            <div id="splash-content">
+                <img src="wave-engine-splash-logo.png" />
+                <div id="loading-bar" class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var loadingBar = $("#loading-bar");
+
+            Module["setProgress"] = function (loadedBytes, totalBytes) {
+                var percentage = Math.round((loadedBytes / totalBytes) * 100);
+                loadingBar.children().css("width", percentage + "%");
+
+                if (percentage == 100) {
+                    loadingBar.addClass("progress-infinite");
+                }
+            };
+
+            var App = {
+                init: function () {
+                    $("#wave-engine-canvas").prop("width", window.innerWidth);
+                    $("#wave-engine-canvas").prop("height", window.innerHeight);
+                    BINDING.call_static_method(
+                        "[BetiJaiDemo.Web] BetiJaiDemo.Web.Program:Main",
+                        [ "wave-engine-canvas" ]);
+                    window.addEventListener("resize", function () {
+                        $("#wave-engine-canvas").prop("width", window.innerWidth);
+                        $("#wave-engine-canvas").prop("height", window.innerHeight);
+                        BINDING.call_static_method(
+                            "[BetiJaiDemo.Web] BetiJaiDemo.Web.Program:UpdateCanvasSize",
+                            [ "wave-engine-canvas" ]);
+                    });
+                }
+            };
+
+            var WaveEngine = {
+                init: function () {
+                    $("#splash").fadeOut();
+                }
+            };
+        </script>
+    </body>
+</html>
