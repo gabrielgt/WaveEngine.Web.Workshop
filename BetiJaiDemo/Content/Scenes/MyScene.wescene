@@ -10,14 +10,14 @@ Items:
         Id: 7f2fd162-9d8f-4dd1-a824-3fc8e53ef37c
         IsEnabled: true
         LocalOrientation:
-          W: 0.923879564
-          X: -0.382683396
-          Y: 0.0
-          Z: 0.0
+          W: -0.343135774
+          X: 0.0283736531
+          Y: 0.93566376
+          Z: 0.0773694143
         LocalPosition:
-          X: 0.0
-          Y: 2.0
-          Z: 2.0
+          X: -36.2400017
+          Y: 2.77399993
+          Z: -61.2120018
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -116,9 +116,9 @@ Items:
         Id: d603a866-b78b-4178-b0b9-9eac740bf4f9
         IsEnabled: true
         LocalOrientation:
-          W: 1.0
+          W: 0.382682562
           X: 0.0
-          Y: 0.0
+          Y: -0.923879921
           Z: 0.0
         LocalPosition:
           X: 0.0
