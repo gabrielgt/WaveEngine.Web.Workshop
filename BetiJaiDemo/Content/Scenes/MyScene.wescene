@@ -10,14 +10,14 @@ Items:
         Id: 7f2fd162-9d8f-4dd1-a824-3fc8e53ef37c
         IsEnabled: true
         LocalOrientation:
-          W: -0.343135774
-          X: 0.0283736531
-          Y: 0.93566376
-          Z: 0.0773694143
+          W: 0.996598661
+          X: -0.0824081525
+          Y: 3.06993514E-10
+          Z: 3.71260911E-09
         LocalPosition:
           X: -36.2400017
-          Y: 2.77399993
-          Z: -61.2120018
+          Y: 2.7750001
+          Z: 61.2120018
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -34,7 +34,7 @@ Items:
       - !WaveEngine.Framework.Graphics.Camera3D,WaveEngine.Framework
         Id: 387b28e8-9a1d-4aba-9c25-01eb3fbaac6c
         Aperture: 1.0
-        AspectRatio: 1.04511273
+        AspectRatio: 0.845864654
         BackgroundColor:
           A: 255
           B: 255
@@ -62,7 +62,7 @@ Items:
           Height: 266.0
           MaxDepth: 1.0
           MinDepth: 0.0
-          Width: 278.0
+          Width: 225.0
           X: 0.0
           Y: 0.0
         Sensitivity: 100.0
@@ -116,9 +116,9 @@ Items:
         Id: d603a866-b78b-4178-b0b9-9eac740bf4f9
         IsEnabled: true
         LocalOrientation:
-          W: 0.382682562
+          W: 1.0
           X: 0.0
-          Y: -0.923879921
+          Y: 0.0
           Z: 0.0
         LocalPosition:
           X: 0.0

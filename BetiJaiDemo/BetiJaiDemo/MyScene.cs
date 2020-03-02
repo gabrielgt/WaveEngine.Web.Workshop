@@ -25,13 +25,15 @@ namespace BetiJaiDemo
 
             foreach (var item in zones)
             {
-                transform.Position = ParseVector3(item.Location) * ScaleFactor;
-                //transform.LookAt(Vector3.Zero);
-                var rotation = ParseVector3(item.Rotate);
-                rotation.Y = rotation.Y + MathHelper.Pi;
-                transform.Rotation = rotation;
+                var rawPosition = ParseVector3(item.Location);
+                rawPosition.Z *= -1;
+                transform.Position = rawPosition * ScaleFactor;
 
-                await System.Threading.Tasks.Task.Delay(3000);
+                var rawRotation = ParseVector3(item.Rotate);
+                rawRotation *= -Vector3.One;
+                transform.Rotation = rawRotation;
+
+                await System.Threading.Tasks.Task.Delay(5000);
             }
         }
 
