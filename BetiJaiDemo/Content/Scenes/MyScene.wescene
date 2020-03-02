@@ -50,7 +50,7 @@ Items:
           MaxDepth: 1.0
           MinDepth: 0.0
         DisplayTag: null
-        DisplayTagDirty: false
+        DisplayTagDirty: true
         Exposure: 1.00000012
         FarPlane: 1000.0
         FieldOfView: 0.785398185
@@ -663,4 +663,28 @@ Items:
         Children: []
         Id: 3faade15-b901-425c-b7f9-112802c99623
     Id: c1b05fc6-dfd5-46e7-b471-9147483673a1
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: hotspots
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 07c7e684-4b53-465e-ba6c-d66e3eba1999
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 0.0
+          Y: 0.0
+          Z: 5.96046448E-07
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+    Children: []
+    Id: 0b143db7-4671-49fa-8856-76bcc84a12dc
 Managers: []
