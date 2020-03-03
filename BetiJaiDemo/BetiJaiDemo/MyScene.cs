@@ -7,6 +7,7 @@ using System.Text.Json;
 using WaveEngine.Components.Graphics3D;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Graphics;
+using WaveEngine.Framework.Graphics.Batchers;
 using WaveEngine.Framework.Services;
 using WaveEngine.Mathematics;
 
@@ -18,13 +19,15 @@ namespace BetiJaiDemo
 
         protected override void CreateScene()
         {
+            base.CreateScene();
+
+            this.DisableMultithreadingStuff();
+            
             var zones = this.LoadZones();
 
             this.CreateHotspots();
             
             this.DisplayZoneWithItsHotspots(zones.ElementAt(0));
-            
-            base.CreateScene();
         }
 
         private static void FixCoordinateSystemFromBabylonJS(ref Vector3 position) => position.Z *= -1;
@@ -46,8 +49,7 @@ namespace BetiJaiDemo
             var hotspots = this.LoadHotspots();
 
             var assetsService = Application.Current.Container.Resolve<AssetsService>();
-            // FIXME This line freezes in Wasm, I think because using async IO underneath
-            Material defaultMaterial = assetsService.Load<Material>(WaveContent.Materials.DefaultMaterial);
+            var defaultMaterial = assetsService.Load<Material>(WaveContent.Materials.DefaultMaterial);
             this.hotspotsRootEntity = this.Managers.EntityManager.Find("hotspots");
 
             foreach (var item in hotspots)
@@ -62,6 +64,13 @@ namespace BetiJaiDemo
                     .AddComponent(new Transform3D { Position = rawPosition });
                 this.hotspotsRootEntity.AddChild(hotspotEntity);
             }
+        }
+
+        private void DisableMultithreadingStuff()
+        {
+            var meshRenderFeature = this.Managers.RenderManager.FindRenderFeature<MeshRenderFeature>();
+            var dynamicBatchMeshProcessor = meshRenderFeature.FindMeshProcessor<DynamicBatchMeshProcessor>();
+            dynamicBatchMeshProcessor.IsActivated = false;
         }
 
         private void DisplayZoneWithItsHotspots(Zone zone)
