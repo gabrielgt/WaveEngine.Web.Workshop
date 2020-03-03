@@ -16,47 +16,15 @@ namespace BetiJaiDemo
     {
         private Entity hotspotsRootEntity;
 
-        protected override async void CreateScene()
+        protected override void CreateScene()
         {
-            this.hotspotsRootEntity = this.Managers.EntityManager.Find("hotspots");
+            var zones = this.LoadZones();
 
             this.CreateHotspots();
             
-            var zones = this.LoadZones();
-
+            this.DisplayZoneWithItsHotspots(zones.ElementAt(0));
+            
             base.CreateScene();
-
-            var camera = this.Managers.EntityManager.Find("camera");
-            var transform = camera.FindComponent<Transform3D>();
-
-            // Taken from comparing betijai.babylon meshes with those imported here through FBX
-            const float ScaleFactor = 1 / 100f;
-
-            foreach (var item in zones)
-            {
-                var rawPosition = ParseVector3(item.Location);
-                FixCoordinateSystemFromBabylonJS(ref rawPosition);
-                transform.Position = rawPosition * ScaleFactor;
-
-                var rawRotation = ParseVector3(item.Rotate);
-                rawRotation *= -Vector3.One;
-                transform.Rotation = rawRotation;
-
-                foreach (var hotspot in this.hotspotsRootEntity.ChildEntities)
-                {
-                    hotspot.IsEnabled = false;
-                }
-
-                var currentZoneHotspots = this.hotspotsRootEntity.ChildEntities
-                    .Where(hotspot => hotspot.Name.EndsWith(item.Id.ToString()));
-
-                foreach (var hotspot in currentZoneHotspots)
-                {
-                    hotspot.IsEnabled = true;
-                }
-
-                await System.Threading.Tasks.Task.Delay(3000);
-            }
         }
 
         private static void FixCoordinateSystemFromBabylonJS(ref Vector3 position) => position.Z *= -1;
@@ -78,8 +46,10 @@ namespace BetiJaiDemo
             var hotspots = this.LoadHotspots();
 
             var assetsService = Application.Current.Container.Resolve<AssetsService>();
-            var defaultMaterial = assetsService.Load<Material>(WaveContent.Materials.DefaultMaterial);
-            
+            // FIXME This line freezes in Wasm, I think because using async IO underneath
+            Material defaultMaterial = assetsService.Load<Material>(WaveContent.Materials.DefaultMaterial);
+            this.hotspotsRootEntity = this.Managers.EntityManager.Find("hotspots");
+
             foreach (var item in hotspots)
             {
                 var rawPosition = ParseVector3(item.Location);
@@ -91,6 +61,36 @@ namespace BetiJaiDemo
                     .AddComponent(new MeshRenderer())
                     .AddComponent(new Transform3D { Position = rawPosition });
                 this.hotspotsRootEntity.AddChild(hotspotEntity);
+            }
+        }
+
+        private void DisplayZoneWithItsHotspots(Zone zone)
+        {
+            // Taken from comparing betijai.babylon meshes with those imported here through FBX
+            const float ScaleFactor = 1 / 100f;
+
+            var camera = this.Managers.EntityManager.Find("camera");
+            var transform = camera.FindComponent<Transform3D>();
+
+            var rawPosition = ParseVector3(zone.Location);
+            FixCoordinateSystemFromBabylonJS(ref rawPosition);
+            transform.Position = rawPosition * ScaleFactor;
+
+            var rawRotation = ParseVector3(zone.Rotate);
+            rawRotation *= -Vector3.One;
+            transform.Rotation = rawRotation;
+
+            foreach (var hotspot in this.hotspotsRootEntity.ChildEntities)
+            {
+                hotspot.IsEnabled = false;
+            }
+
+            var currentZoneHotspots = this.hotspotsRootEntity.ChildEntities
+                .Where(hotspot => hotspot.Name.EndsWith(zone.Id.ToString()));
+
+            foreach (var hotspot in currentZoneHotspots)
+            {
+                hotspot.IsEnabled = true;
             }
         }
 
