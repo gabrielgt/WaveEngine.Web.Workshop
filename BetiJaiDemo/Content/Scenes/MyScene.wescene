@@ -71,6 +71,10 @@ Items:
           X: 0.0
           Y: 1.0
           Z: 0.0
+      - !BetiJaiDemo.Behaviors.CameraTravellingBehavior,BetiJaiDemo
+        Id: fdd34c74-5f6d-4f7b-990e-c8f48f22fac2
+        IsEnabled: true
+        UpdateOrder: 0.5
     Children: []
     Id: 782c7fb5-5e83-4c10-ad5f-a5b42a0e32cc
   - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework

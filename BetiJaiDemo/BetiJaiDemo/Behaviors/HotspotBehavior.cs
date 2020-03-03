@@ -5,7 +5,7 @@ using WaveEngine.Framework;
 using WaveEngine.Framework.Graphics;
 using WaveEngine.Mathematics;
 
-namespace BetiJaiDemo
+namespace BetiJaiDemo.Behaviors
 {
     internal class HotspotBehavior : Behavior
     {

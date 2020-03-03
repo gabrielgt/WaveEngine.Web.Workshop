@@ -1,5 +1,5 @@
+using BetiJaiDemo.Behaviors;
 using BetiJaiDemo.Models;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -16,21 +16,7 @@ namespace BetiJaiDemo
 {
     public class MyScene : Scene
     {
-        private const int CameraSmoothTimeSeconds = 3;
-
-        private Vector3 cameraPositionCurrentVelocity;
-        
-        private Vector3 cameraRotationCurrentVelocity;
-        
-        private Vector3 cameraTargetPosition;
-        
-        private Vector3 cameraTargetRotation;
-        
-        private Transform3D cameraTransform;
-        
         private Entity hotspotsRootEntity;
-        
-        private bool isCameraAnimationInProgress;
         
         private IEnumerable<Zone> zones;
 
@@ -52,36 +38,13 @@ namespace BetiJaiDemo
             this.zones = this.LoadZones();
 
             this.CreateHotspots();
-            
-            this.DisplayZoneWithItsHotspots(this.zones.First(), isAnimated: false);
         }
 
-        protected override void Update(TimeSpan gameTime)
+        protected override void Start()
         {
-            base.Update(gameTime);
+            base.Start();
 
-            if (this.isCameraAnimationInProgress)
-            {
-                this.cameraTransform.Position = Vector3.SmoothDamp(
-                    this.cameraTransform.Position,
-                    this.cameraTargetPosition,
-                    ref this.cameraPositionCurrentVelocity,
-                    CameraSmoothTimeSeconds * 1000,
-                    (float)gameTime.TotalMilliseconds);
-
-                this.cameraTransform.Rotation = Vector3.SmoothDamp(
-                    this.cameraTransform.Rotation,
-                    this.cameraTargetRotation,
-                    ref this.cameraRotationCurrentVelocity,
-                    CameraSmoothTimeSeconds * 1000,
-                    (float)gameTime.TotalMilliseconds);
-
-                if ((this.cameraTransform.Position == this.cameraTargetPosition) &&
-                    (this.cameraTransform.Rotation == this.cameraTargetRotation))
-                {
-                    this.isCameraAnimationInProgress = false;
-                }
-            }
+            this.DisplayZoneWithItsHotspots(this.zones.First(), isAnimated: false);
         }
 
         private static void FixCoordinateSystemFromBabylonJS(ref Vector3 position) => position.Z *= -1;
@@ -134,7 +97,7 @@ namespace BetiJaiDemo
             const float ScaleFactor = 1 / 100f;
 
             var camera = this.Managers.EntityManager.Find("camera");
-            this.cameraTransform = camera.FindComponent<Transform3D>();
+            var cameraTravelling = camera.FindComponent<CameraTravellingBehavior>();
 
             var position = ParseVector3(zone.Location);
             FixCoordinateSystemFromBabylonJS(ref position);
@@ -145,15 +108,11 @@ namespace BetiJaiDemo
 
             if (isAnimated)
             {
-                this.cameraTargetPosition = position;
-                this.cameraTargetRotation = rotation;
-                this.isCameraAnimationInProgress = true;
+                cameraTravelling.AnimateTo(position, rotation);
             }
             else
             {
-                this.cameraTransform.Position = position;
-                this.cameraTransform.Rotation = rotation;
-                this.isCameraAnimationInProgress = false;
+                cameraTravelling.FixTo(position, rotation);
             }
 
             foreach (var hotspot in this.hotspotsRootEntity.ChildEntities)
