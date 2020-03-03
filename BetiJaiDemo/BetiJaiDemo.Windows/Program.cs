@@ -14,8 +14,8 @@ namespace BetiJaiDemo.Windows
             MyApplication application = new MyApplication();
 
             // Create Services
-            uint width = 1280;
-            uint height = 720;
+            uint width = 640;
+            uint height = 400;
             WindowsSystem windowsSystem = new WaveEngine.Forms.FormsWindowsSystem();
             application.Container.RegisterInstance(windowsSystem);
             var window = windowsSystem.CreateWindow("BetiJaiDemo", width, height);
