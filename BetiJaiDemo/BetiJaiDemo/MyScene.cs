@@ -77,7 +77,7 @@ namespace BetiJaiDemo
                     (float)gameTime.TotalMilliseconds);
 
                 if ((this.cameraTransform.Position == this.cameraTargetPosition) &&
-                    (this.cameraTransform.Rotation != this.cameraTargetRotation))
+                    (this.cameraTransform.Rotation == this.cameraTargetRotation))
                 {
                     this.isCameraAnimationInProgress = false;
                 }
