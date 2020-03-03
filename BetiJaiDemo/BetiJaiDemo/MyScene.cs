@@ -16,7 +16,7 @@ namespace BetiJaiDemo
 {
     public class MyScene : Scene
     {
-        private const int CameraSmoothTimeMilliseconds = 1000;
+        private const int CameraSmoothTimeSeconds = 3;
 
         private Vector3 cameraPositionCurrentVelocity;
         
@@ -66,14 +66,14 @@ namespace BetiJaiDemo
                     this.cameraTransform.Position,
                     this.cameraTargetPosition,
                     ref this.cameraPositionCurrentVelocity,
-                    CameraSmoothTimeMilliseconds,
+                    CameraSmoothTimeSeconds * 1000,
                     (float)gameTime.TotalMilliseconds);
 
                 this.cameraTransform.Rotation = Vector3.SmoothDamp(
                     this.cameraTransform.Rotation,
                     this.cameraTargetRotation,
                     ref this.cameraRotationCurrentVelocity,
-                    CameraSmoothTimeMilliseconds / 2,
+                    CameraSmoothTimeSeconds * 1000,
                     (float)gameTime.TotalMilliseconds);
 
                 if ((this.cameraTransform.Position == this.cameraTargetPosition) &&
