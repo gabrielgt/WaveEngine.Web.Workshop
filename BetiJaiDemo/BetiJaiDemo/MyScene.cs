@@ -59,6 +59,7 @@ namespace BetiJaiDemo
 
                 var hotspotEntity = new Entity($"hotspot{item.Id}-{item.ZoneId}")
                     .AddComponent(new CubeMesh())
+                    .AddComponent(new HotspotBehavior(item.Name))
                     .AddComponent(new MaterialComponent() { Material = defaultMaterial } )
                     .AddComponent(new MeshRenderer())
                     .AddComponent(new Transform3D { Position = rawPosition });
