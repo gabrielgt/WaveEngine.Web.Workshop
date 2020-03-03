@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -69,6 +69,8 @@
     <body>
         <canvas id="wave-engine-canvas" oncontextmenu="return false;" tabindex="1"></canvas>
 
+        <div id="hotspot"></div>
+
         <div id="splash">
             <div id="splash-content">
                 <img src="wave-engine-splash-logo.png" />
@@ -92,18 +94,14 @@
 
             var App = {
                 init: function () {
-                    $("#wave-engine-canvas").prop("width", window.innerWidth);
-                    $("#wave-engine-canvas").prop("height", window.innerHeight);
+                    $("#wave-engine-canvas").prop("width", 640);
+                    $("#wave-engine-canvas").prop("height", 400);
                     BINDING.call_static_method(
                         "[BetiJaiDemo.Web] BetiJaiDemo.Web.Program:Main",
                         [ "wave-engine-canvas" ]);
-                    window.addEventListener("resize", function () {
-                        $("#wave-engine-canvas").prop("width", window.innerWidth);
-                        $("#wave-engine-canvas").prop("height", window.innerHeight);
-                        BINDING.call_static_method(
-                            "[BetiJaiDemo.Web] BetiJaiDemo.Web.Program:UpdateCanvasSize",
-                            [ "wave-engine-canvas" ]);
-                    });
+                },
+                hotspotClicked: function (name) {
+                    $('#hotspot').html(name);
                 }
             };
 

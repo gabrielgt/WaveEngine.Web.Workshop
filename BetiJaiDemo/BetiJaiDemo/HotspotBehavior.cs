@@ -54,6 +54,9 @@ namespace BetiJaiDemo
                 if (rayIntersects)
                 {
                     System.Diagnostics.Trace.WriteLine($"'{this.name}' clicked");
+
+                    var notifier = Application.Current.Container.Resolve<IHotspotNotifier>();
+                    notifier?.Notify(this.name);
                 }
             }
         }
