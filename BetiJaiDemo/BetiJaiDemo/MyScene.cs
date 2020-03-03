@@ -2,9 +2,7 @@ using BetiJaiDemo.Behaviors;
 using BetiJaiDemo.Models;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using WaveEngine.Components.Graphics3D;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Graphics;
@@ -34,8 +32,9 @@ namespace BetiJaiDemo
             base.CreateScene();
 
             this.DisableMultithreadingStuff();
-            
-            this.zones = this.LoadZones();
+
+            var zoneList = JsonHelper.Deserialize<ZoneList>("Content/Raw/zones.json");
+            this.zones = zoneList.Zones;
 
             this.CreateHotspots();
         }
@@ -63,7 +62,8 @@ namespace BetiJaiDemo
 
         private void CreateHotspots()
         {
-            var hotspots = this.LoadHotspots();
+            var hotspotList = JsonHelper.Deserialize<HotspotList>("Content/Raw/hotspots.json");
+            var hotspots = hotspotList.Hotspots;
 
             var assetsService = Application.Current.Container.Resolve<AssetsService>();
             var defaultMaterial = assetsService.Load<Material>(WaveContent.Materials.DefaultMaterial);
@@ -127,30 +127,6 @@ namespace BetiJaiDemo
             {
                 hotspot.IsEnabled = true;
             }
-        }
-
-        private IEnumerable<Hotspot> LoadHotspots()
-        {
-            var json = File.ReadAllText("Content/Raw/hotspots.json");
-            var options = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            };
-            var hotSpotList = JsonSerializer.Deserialize<HotspotList>(json, options);
-
-            return hotSpotList.Hotspots;
-        }
-
-        private IEnumerable<Zone> LoadZones()
-        {
-            var json = File.ReadAllText("Content/Raw/zones.json");
-            var options = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            };
-            var zoneList = JsonSerializer.Deserialize<ZoneList>(json, options);
-
-            return zoneList.Zones;
         }
     }
 }
