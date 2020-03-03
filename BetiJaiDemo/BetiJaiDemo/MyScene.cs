@@ -1,4 +1,5 @@
 using BetiJaiDemo.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -16,6 +17,17 @@ namespace BetiJaiDemo
     public class MyScene : Scene
     {
         private Entity hotspotsRootEntity;
+        
+        private IEnumerable<Zone> zones;
+
+        internal void DisplayZone(int id)
+        {
+            var zone = this.zones
+                .Where(item => item.Id == id)
+                .First();
+
+            this.DisplayZoneWithItsHotspots(zone);
+        }
 
         protected override void CreateScene()
         {
@@ -23,11 +35,11 @@ namespace BetiJaiDemo
 
             this.DisableMultithreadingStuff();
             
-            var zones = this.LoadZones();
+            this.zones = this.LoadZones();
 
             this.CreateHotspots();
             
-            this.DisplayZoneWithItsHotspots(zones.ElementAt(0));
+            this.DisplayZoneWithItsHotspots(this.zones.First());
         }
 
         private static void FixCoordinateSystemFromBabylonJS(ref Vector3 position) => position.Z *= -1;

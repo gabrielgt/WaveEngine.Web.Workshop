@@ -13,11 +13,15 @@ namespace BetiJaiDemo.Web
     public class Program
     {
         private static readonly Dictionary<string, WebSurface> appCanvas = new Dictionary<string, WebSurface>();
+        
+        private static MyApplication application;
+
+        public static void DisplayZone(int id) => application.DisplayZone(id);
 
         public static void Main(string canvasId)
         {
             // Create app
-            var application = new MyApplication();
+            application = new MyApplication();
 
             // Create Services
             var windowsSystem = new WebWindowsSystem();

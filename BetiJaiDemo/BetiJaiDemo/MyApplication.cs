@@ -1,3 +1,4 @@
+using System;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Services;
 using WaveEngine.Framework.Threading;
@@ -11,7 +12,7 @@ namespace BetiJaiDemo
         {
             this.Container.RegisterType<Clock>();
             this.Container.RegisterType<TimerFactory>();
-            this.Container.RegisterType<Random>();
+            this.Container.RegisterType<WaveEngine.Framework.Services.Random>();
             this.Container.RegisterType<ErrorHandler>();
             this.Container.RegisterType<ScreenContextManager>();
             this.Container.RegisterType<GraphicsPresenter>();
@@ -21,6 +22,13 @@ namespace BetiJaiDemo
 
             ForegroundTaskScheduler.Foreground.Configure(this.Container);
             BackgroundTaskScheduler.Background.Configure(this.Container);
+        }
+
+        public void DisplayZone(int id)
+        {
+            var screenContextManager = this.Container.Resolve<ScreenContextManager>();
+            var scene = screenContextManager.CurrentContext.FindScene<MyScene>();
+            scene.DisplayZone(id);
         }
 
         public override void Initialize()

@@ -69,7 +69,19 @@
     <body>
         <canvas id="wave-engine-canvas" oncontextmenu="return false;" tabindex="1"></canvas>
 
-        <div id="hotspot"></div>
+        <p>
+            Hotspot: <span id="hotspot">(Por favor, haz clic sobre un hotspot)</span>
+        </p>
+
+        <ol>
+            <li><a href="" onclick="return App.displayZone(1);">La Fachada Principal</a></li>
+            <li><a href="" onclick="return App.displayZone(2);">La Fachada Posterior</a></li>
+            <li><a href="" onclick="return App.displayZone(3);">El callejón</a></li>
+            <li><a href="" onclick="return App.displayZone(4);">La Cancha</a></li>
+            <li><a href="" onclick="return App.displayZone(5);">La Cubierta</a></li>
+            <li><a href="" onclick="return App.displayZone(6);">Las Gradas</a></li>
+            <li><a href="" onclick="return App.displayZone(7);">La Trasera</a></li>
+        </ol>
 
         <div id="splash">
             <div id="splash-content">
@@ -93,6 +105,14 @@
             };
 
             var App = {
+                displayZone: function (id) {
+                    BINDING.call_static_method('[BetiJaiDemo.Web] BetiJaiDemo.Web.Program:DisplayZone', [id]);
+
+                    return false;
+                },
+                hotspotClicked: function (name) {
+                    $('#hotspot').html(name);
+                },
                 init: function () {
                     $("#wave-engine-canvas").prop("width", 640);
                     $("#wave-engine-canvas").prop("height", 400);
@@ -100,9 +120,6 @@
                         "[BetiJaiDemo.Web] BetiJaiDemo.Web.Program:Main",
                         [ "wave-engine-canvas" ]);
                 },
-                hotspotClicked: function (name) {
-                    $('#hotspot').html(name);
-                }
             };
 
             var WaveEngine = {
