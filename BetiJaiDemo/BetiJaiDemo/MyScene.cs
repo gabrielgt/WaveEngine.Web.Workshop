@@ -25,10 +25,12 @@ namespace BetiJaiDemo
         private Vector3 cameraTargetPosition;
         
         private Vector3 cameraTargetRotation;
-
+        
         private Transform3D cameraTransform;
         
         private Entity hotspotsRootEntity;
+        
+        private bool isCameraAnimationInProgress;
         
         private IEnumerable<Zone> zones;
 
@@ -51,14 +53,14 @@ namespace BetiJaiDemo
 
             this.CreateHotspots();
             
-            this.DisplayZoneWithItsHotspots(this.zones.First());
+            this.DisplayZoneWithItsHotspots(this.zones.First(), isAnimated: false);
         }
 
         protected override void Update(TimeSpan gameTime)
         {
             base.Update(gameTime);
 
-            if (this.cameraTransform.Position != this.cameraTargetPosition)
+            if (this.isCameraAnimationInProgress)
             {
                 this.cameraTransform.Position = Vector3.SmoothDamp(
                     this.cameraTransform.Position,
@@ -66,16 +68,19 @@ namespace BetiJaiDemo
                     ref this.cameraPositionCurrentVelocity,
                     CameraSmoothTimeMilliseconds,
                     (float)gameTime.TotalMilliseconds);
-            }
 
-            if (this.cameraTransform.Rotation != this.cameraTargetRotation)
-            {
                 this.cameraTransform.Rotation = Vector3.SmoothDamp(
                     this.cameraTransform.Rotation,
                     this.cameraTargetRotation,
                     ref this.cameraRotationCurrentVelocity,
                     CameraSmoothTimeMilliseconds / 2,
                     (float)gameTime.TotalMilliseconds);
+
+                if ((this.cameraTransform.Position == this.cameraTargetPosition) &&
+                    (this.cameraTransform.Rotation != this.cameraTargetRotation))
+                {
+                    this.isCameraAnimationInProgress = false;
+                }
             }
         }
 
@@ -123,7 +128,7 @@ namespace BetiJaiDemo
             dynamicBatchMeshProcessor.IsActivated = false;
         }
 
-        private void DisplayZoneWithItsHotspots(Zone zone)
+        private void DisplayZoneWithItsHotspots(Zone zone, bool isAnimated = true)
         {
             // Taken from comparing betijai.babylon meshes with those imported here through FBX
             const float ScaleFactor = 1 / 100f;
@@ -131,13 +136,25 @@ namespace BetiJaiDemo
             var camera = this.Managers.EntityManager.Find("camera");
             this.cameraTransform = camera.FindComponent<Transform3D>();
 
-            var rawPosition = ParseVector3(zone.Location);
-            FixCoordinateSystemFromBabylonJS(ref rawPosition);
-            this.cameraTargetPosition = rawPosition * ScaleFactor;
+            var position = ParseVector3(zone.Location);
+            FixCoordinateSystemFromBabylonJS(ref position);
+            position *= ScaleFactor;
 
-            var rawRotation = ParseVector3(zone.Rotate);
-            rawRotation *= -Vector3.One;
-            this.cameraTargetRotation = rawRotation;
+            var rotation = ParseVector3(zone.Rotate);
+            rotation *= -Vector3.One;
+
+            if (isAnimated)
+            {
+                this.cameraTargetPosition = position;
+                this.cameraTargetRotation = rotation;
+                this.isCameraAnimationInProgress = true;
+            }
+            else
+            {
+                this.cameraTransform.Position = position;
+                this.cameraTransform.Rotation = rotation;
+                this.isCameraAnimationInProgress = false;
+            }
 
             foreach (var hotspot in this.hotspotsRootEntity.ChildEntities)
             {
