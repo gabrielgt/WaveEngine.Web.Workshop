@@ -1,7 +1,6 @@
 using BetiJaiDemo.Behaviors;
 using BetiJaiDemo.Models;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using WaveEngine.Components.Graphics3D;
 using WaveEngine.Framework;
@@ -48,18 +47,6 @@ namespace BetiJaiDemo
 
         private static void FixCoordinateSystemFromBabylonJS(ref Vector3 position) => position.Z *= -1;
 
-        private static float Parse(string value) => float.Parse(value, CultureInfo.InvariantCulture);
-
-        private static Vector3 ParseVector3(string value)
-        {
-            var valueSplit = value.Split(',');
-
-            return new Vector3(
-               Parse(valueSplit[0]),
-               Parse(valueSplit[1]),
-               Parse(valueSplit[2]));
-        }
-
         private void CreateHotspots()
         {
             var hotspotList = JsonHelper.Deserialize<HotspotList>("Content/Raw/hotspots.json");
@@ -71,7 +58,7 @@ namespace BetiJaiDemo
 
             foreach (var item in hotspots)
             {
-                var rawPosition = ParseVector3(item.Location);
+                var rawPosition = JsonHelper.ParseVector3(item.Location);
                 FixCoordinateSystemFromBabylonJS(ref rawPosition);
 
                 var hotspotEntity = new Entity($"hotspot{item.Id}-{item.ZoneId}")
@@ -99,11 +86,11 @@ namespace BetiJaiDemo
             var camera = this.Managers.EntityManager.Find("camera");
             var cameraTravelling = camera.FindComponent<CameraTravellingBehavior>();
 
-            var position = ParseVector3(zone.Location);
+            var position = JsonHelper.ParseVector3(zone.Location);
             FixCoordinateSystemFromBabylonJS(ref position);
             position *= ScaleFactor;
 
-            var rotation = ParseVector3(zone.Rotate);
+            var rotation = JsonHelper.ParseVector3(zone.Rotate);
             rotation *= -Vector3.One;
 
             if (isAnimated)
