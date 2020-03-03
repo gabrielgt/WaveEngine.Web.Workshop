@@ -16,6 +16,18 @@ namespace BetiJaiDemo
 {
     public class MyScene : Scene
     {
+        private const int CameraSmoothTimeMilliseconds = 1000;
+
+        private Vector3 cameraPositionCurrentVelocity;
+        
+        private Vector3 cameraRotationCurrentVelocity;
+        
+        private Vector3 cameraTargetPosition;
+        
+        private Vector3 cameraTargetRotation;
+
+        private Transform3D cameraTransform;
+        
         private Entity hotspotsRootEntity;
         
         private IEnumerable<Zone> zones;
@@ -40,6 +52,31 @@ namespace BetiJaiDemo
             this.CreateHotspots();
             
             this.DisplayZoneWithItsHotspots(this.zones.First());
+        }
+
+        protected override void Update(TimeSpan gameTime)
+        {
+            base.Update(gameTime);
+
+            if (this.cameraTransform.Position != this.cameraTargetPosition)
+            {
+                this.cameraTransform.Position = Vector3.SmoothDamp(
+                    this.cameraTransform.Position,
+                    this.cameraTargetPosition,
+                    ref this.cameraPositionCurrentVelocity,
+                    CameraSmoothTimeMilliseconds,
+                    (float)gameTime.TotalMilliseconds);
+            }
+
+            if (this.cameraTransform.Rotation != this.cameraTargetRotation)
+            {
+                this.cameraTransform.Rotation = Vector3.SmoothDamp(
+                    this.cameraTransform.Rotation,
+                    this.cameraTargetRotation,
+                    ref this.cameraRotationCurrentVelocity,
+                    CameraSmoothTimeMilliseconds / 2,
+                    (float)gameTime.TotalMilliseconds);
+            }
         }
 
         private static void FixCoordinateSystemFromBabylonJS(ref Vector3 position) => position.Z *= -1;
@@ -92,15 +129,15 @@ namespace BetiJaiDemo
             const float ScaleFactor = 1 / 100f;
 
             var camera = this.Managers.EntityManager.Find("camera");
-            var transform = camera.FindComponent<Transform3D>();
+            this.cameraTransform = camera.FindComponent<Transform3D>();
 
             var rawPosition = ParseVector3(zone.Location);
             FixCoordinateSystemFromBabylonJS(ref rawPosition);
-            transform.Position = rawPosition * ScaleFactor;
+            this.cameraTargetPosition = rawPosition * ScaleFactor;
 
             var rawRotation = ParseVector3(zone.Rotate);
             rawRotation *= -Vector3.One;
-            transform.Rotation = rawRotation;
+            this.cameraTargetRotation = rawRotation;
 
             foreach (var hotspot in this.hotspotsRootEntity.ChildEntities)
             {
