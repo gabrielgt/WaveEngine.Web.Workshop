@@ -24,7 +24,7 @@ Items:
           Z: 1.0
       - !WaveEngine.Components.Cameras.FreeCamera3D,WaveEngine.Components
         Id: 2bdb5c01-f251-4457-a730-65cac81c66b4
-        IsEnabled: true
+        IsEnabled: false
         MaxPitch: 1.49225616
         MouseSensibility: 0.0299999993
         Speed: 5.0
@@ -50,7 +50,7 @@ Items:
           MaxDepth: 1.0
           MinDepth: 0.0
         DisplayTag: null
-        DisplayTagDirty: true
+        DisplayTagDirty: false
         Exposure: 1.00000012
         FarPlane: 1000.0
         FieldOfView: 0.785398185
