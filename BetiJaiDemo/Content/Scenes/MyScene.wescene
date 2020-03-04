@@ -10,10 +10,10 @@ Items:
         Id: 7f2fd162-9d8f-4dd1-a824-3fc8e53ef37c
         IsEnabled: true
         LocalOrientation:
-          W: 0.996598661
-          X: -0.0824081525
-          Y: 3.06993514E-10
-          Z: 3.71260911E-09
+          W: 0.917343318
+          X: 0.0758545324
+          Y: -0.389474124
+          Z: 0.0322053879
         LocalPosition:
           X: -36.2400017
           Y: 2.7750001
@@ -53,7 +53,7 @@ Items:
         DisplayTagDirty: false
         Exposure: 1.00000012
         FarPlane: 1000.0
-        FieldOfView: 0.785398185
+        FieldOfView: 0.75
         FrustumCullingEnabled: true
         IsEnabled: true
         LayerMaskDefaultValue: true
