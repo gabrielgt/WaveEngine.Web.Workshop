@@ -26,7 +26,15 @@ let App = {
         return false;
     },
     hotspotClicked: function (name) {
-        alert(name);
+        $('#dialog-message').dialog({
+            buttons: {
+                'Volver al plano': function () {
+                    $(this).dialog("close");
+                }
+            },
+            modal: true,
+            title: name
+        });
     },
     init: function () {
         this.updateCanvasSize();
