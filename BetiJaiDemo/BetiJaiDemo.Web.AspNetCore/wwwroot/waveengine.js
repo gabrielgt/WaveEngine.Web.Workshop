@@ -31,6 +31,7 @@ let App = {
     init: function () {
         this.updateCanvasSize();
         this.Program.Main(this.mainCanvasId);
+        this.resizeAppSize();
     },
     resizeAppSize: function () {
         this.updateCanvasSize();
