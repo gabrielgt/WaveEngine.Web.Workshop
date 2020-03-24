@@ -18,6 +18,6 @@
       <OutputFiles Include="..\BetiJaiDemo.Web\bin\$(Configuration)\netstandard2.0\**\*"></OutputFiles>
       <FileWrites Include="@(OutputFiles)" />
     </ItemGroup>
-    <Copy SourceFiles="@(OutputFiles)" DestinationFiles="wwwroot\%(RecursiveDir)\%(Filename)%(Extension)" OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="@(OutputFiles)" DestinationFiles="wwwroot\waveengine\%(RecursiveDir)\%(Filename)%(Extension)" OverwriteReadOnlyFiles="true" />
   </Target>
 </Project>

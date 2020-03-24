@@ -762,7 +762,7 @@ void EvaluateIBL(const ShadingParams shading, const MaterialInputs material, con
 }
 #endif  
 
-float D_GGX(float normal, float roughness, float NoH, const float3 h)
+float D_GGX(float3 normal, float roughness, float NoH, const float3 h)
 {
 	// Walter et al. 2007, "Microfacet Models for Refraction through Rough Surfaces"
 
@@ -823,7 +823,7 @@ float3 F_Schlick(const float3 f0, float f90, float VoH)
 	return f0 + (f90 - f0) * Pow5(1.0 - VoH);
 }
 
-float Distribution(float normal, float roughness, float NoH, const float3 h)
+float Distribution(float3 normal, float roughness, float NoH, const float3 h)
 {
 	return D_GGX(normal, roughness, NoH, h);
 }
@@ -1074,6 +1074,16 @@ Light GetDirectionalLight(const ShadingParams shading, const LightProperties lig
 	return light;
 }
 
+uint findIndexLSB(uint value) {
+	// http://graphics.stanford.edu/~seander/bithacks.html#ZerosOnRightMultLookup
+	const uint MultiplyDeBruijnBitPosition[32] =
+	{
+	  0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8,
+	  31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9
+	};
+	return MultiplyDeBruijnBitPosition[((uint)((value & -value) * 0x077CB531U)) >> 27];
+}
+
 void EvaluatePunctualLights(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, inout float3 color)
 {
 	[branch]
@@ -1092,7 +1102,11 @@ void EvaluatePunctualLights(const ShadingParams shading, const MaterialInputs ma
 			while (bucket_bits != 0)
 			{
 				// Retrieve global entity index from local bucket, then remove bit from local bucket:
+#if LOW_PROFILE
+				const uint bucket_bit_index = findIndexLSB(bucket_bits);
+#else
 				const uint bucket_bit_index = firstbitlow(bucket_bits);
+#endif
 				const uint light_index = bucket * 32 + bucket_bit_index;
 				bucket_bits ^= 1 << bucket_bit_index;
 

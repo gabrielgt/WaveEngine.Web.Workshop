@@ -1,0 +1,43 @@
+!WaveEngine.Assets.Exporters.ModelMetaFile,WaveEngine.Assets
+Id: 3129d41c-801f-4aed-9420-93de6ccc6ab0
+Clips: []
+DefaultProfile:
+  ExcludeAsset: false
+  Name: null
+  Platform: Undefined
+ExportAnimations: true
+ExportAsRaw: false
+GenerateTangentSpace: false
+Profiles: {}
+Source:
+  Header:
+    Id: 8b890bf6-0c07-4dea-beee-62632d9ba12d
+    IsCompressed: true
+  LastModified: 0001-01-01T00:00:00.0000000
+  ModelInfo:
+    Id: 16ee7038-cfb2-489c-8c4f-a0009a617d96
+    AnimationTracks: []
+    EmbeddedResources: null
+    Materials:
+      - Item1: Lateral_Anterior
+        Item2: f3f23375-f7af-4e3b-96a1-653cfce4ea91
+      - Item1: Floor
+        Item2: a67dfd56-bad5-402b-8f67-df05382b65c8
+      - Item1: Gradas_Muro
+        Item2: bb45e965-f4dd-4849-bc56-776489082c44
+      - Item1: Frontal_interior
+        Item2: b311f02a-cc73-4a2a-b3a2-ae051abb15d0
+    Nodes:
+      - RootNode
+      - RootNode.Lateral_Anterior
+      - RootNode.Gradas_Muro
+      - RootNode.Frontal_interior
+      - RootNode.Floor
+      - RootNode.Lateral_Anterior.Lateral_Anterior_primitive0
+      - RootNode.Lateral_Anterior.Lateral_Anterior_primitive1
+      - RootNode.Gradas_Muro.Gradas_Muro_primitive0
+      - RootNode.Gradas_Muro.Gradas_Muro_primitive1
+      - RootNode.Frontal_interior.Frontal_interior_primitive0
+      - RootNode.Frontal_interior.Frontal_interior_primitive1
+      - RootNode.Frontal_interior.Frontal_interior_primitive2
+SwapWindingOrder: false

@@ -55,8 +55,6 @@ namespace BetiJaiDemo.Web
                     application.UpdateFrame(gameTime);
                     application.DrawFrame(gameTime);
                 });
-
-            LinkerPleaseInclude();
         }
 
         public void UpdateCanvasSize(string canvasId)
@@ -92,11 +90,6 @@ namespace BetiJaiDemo.Web
             graphicsPresenter.AddDisplay("DefaultDisplay", firstDisplay);
 
             application.Container.RegisterInstance(graphicsContext);
-        }
-
-        private static void LinkerPleaseInclude()
-        {
-            WaveEngine.Assets.Importers.FBXImporter fBXImporter;
         }
     }
 }

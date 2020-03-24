@@ -23,7 +23,7 @@ namespace BetiJaiDemo
     //         // Add MyCustomClass properties.
     //         this.propertyPanelContainer.AddLabel("MyLabel", "My label");
     //         this.propertyPanelContainer.AddNumeric(nameof(MyCustomClass.Number), nameof(MyCustomClass.Number), getValue: () => property.Number, setValue: x => property.Number = x);
-    //         this.propertyPanelContainer.AddText(nameof(MyCustomClass.Number), nameof(MyCustomClass.String), () => property.String, x => property.String = x);
+    //         this.propertyPanelContainer.AddText(nameof(MyCustomClass.String), nameof(MyCustomClass.String), () => property.String, x => property.String = x);
     //     }
     // }
 }

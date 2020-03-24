@@ -1,4 +1,3 @@
-using System;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Services;
 using WaveEngine.Framework.Threading;
@@ -12,7 +11,7 @@ namespace BetiJaiDemo
         {
             this.Container.RegisterType<Clock>();
             this.Container.RegisterType<TimerFactory>();
-            this.Container.RegisterType<WaveEngine.Framework.Services.Random>();
+            this.Container.RegisterType<Random>();
             this.Container.RegisterType<ErrorHandler>();
             this.Container.RegisterType<ScreenContextManager>();
             this.Container.RegisterType<GraphicsPresenter>();

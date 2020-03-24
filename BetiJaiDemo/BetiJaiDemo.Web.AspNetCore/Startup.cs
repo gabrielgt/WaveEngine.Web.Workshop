@@ -39,11 +39,11 @@ namespace BetiJaiDemo.Web.AspNetCore
                 ContentTypeProvider = provider
             });
 
-            var managedPhysicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "managed");
+            var managedPhysicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "waveengine", "managed");
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(managedPhysicalPath),
-                RequestPath = "/managed", 
+                RequestPath = "/waveengine/managed", 
                 ServeUnknownFileTypes = true,
             });
         }
