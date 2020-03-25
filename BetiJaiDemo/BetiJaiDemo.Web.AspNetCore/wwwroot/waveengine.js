@@ -53,8 +53,6 @@ let App = {
         this.updateCanvasSize();
         this.Program.Main(this.mainCanvasId);
         this.resizeAppSize();
-
-        this.displayZone($('#zones a').first());
     },
     resizeAppSize: function () {
         this.updateCanvasSize();
@@ -90,6 +88,10 @@ let App = {
 
 let WaveEngine = {
     init: function () {
-        $('#splash').fadeOut(function () { $(this).remove(); });
+        $('#splash').fadeOut(function () {
+            $(this).remove();
+
+            App.displayZone($('#zones a').first());
+        });
     }
 };
