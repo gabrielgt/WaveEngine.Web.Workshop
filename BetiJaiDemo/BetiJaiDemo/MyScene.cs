@@ -2,12 +2,14 @@ using BetiJaiDemo.Behaviors;
 using BetiJaiDemo.Models;
 using System.Collections.Generic;
 using System.Linq;
+using WaveEngine.Common;
 using WaveEngine.Components.Graphics3D;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Graphics;
 using WaveEngine.Framework.Graphics.Batchers;
 using WaveEngine.Framework.Services;
 using WaveEngine.Mathematics;
+using WaveEngine.Platform;
 
 namespace BetiJaiDemo
 {
@@ -42,7 +44,10 @@ namespace BetiJaiDemo
         {
             base.Start();
 
-            this.DisplayZoneWithItsHotspots(this.zones.First(), isAnimated: false);
+            if (DeviceInfo.PlatformType != PlatformType.Web)
+            {
+                this.DisplayZoneWithItsHotspots(this.zones.First(), isAnimated: false);
+            }
         }
 
         private static void FixCoordinateSystemFromBabylonJS(ref Vector3 position) => position.Z *= -1;
@@ -55,7 +60,7 @@ namespace BetiJaiDemo
             var assetsService = Application.Current.Container.Resolve<AssetsService>();
             var material = assetsService.Load<Material>(WaveContent.Materials.HotspotMaterial);
             
-            const float hotspotSideMeters = 2.5f;
+            const float hotspotSideMeters = 2;
 
             foreach (var item in hotspots)
             {

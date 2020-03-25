@@ -15,15 +15,28 @@ Module['setProgress'] = function (loadedBytes, totalBytes) {
 
 let App = {
     mainCanvasId: undefined,
+    bindUI: function () {
+        $('#zones a').click(function (event) {
+            event.preventDefault();
+
+            App.displayZone(this);
+
+            return false;
+        });
+    },
     configure: function (canvasId, assemblyName, className) {
         this.mainCanvasId = canvasId;
         this.Program.assemblyName = assemblyName;
         this.Program.className = className;
-    },
-    displayZone: function (id) {
-        this.Program.DisplayZone(id);
 
-        return false;
+        this.bindUI();
+    },
+    displayZone: function (anchor) {
+        $('#zones a').css('color', 'initial');
+        $(anchor).css('color', '#d3592a');
+
+        let zoneId = $(anchor).data('zone');
+        this.Program.DisplayZone(zoneId);
     },
     hotspotClicked: function (name) {
         $('#dialog-message').dialog({
@@ -40,6 +53,8 @@ let App = {
         this.updateCanvasSize();
         this.Program.Main(this.mainCanvasId);
         this.resizeAppSize();
+
+        this.displayZone($('#zones a').first());
     },
     resizeAppSize: function () {
         this.updateCanvasSize();
