@@ -7,8 +7,11 @@ namespace BetiJaiDemo.Behaviors
 {
     public class CameraTravellingBehavior : Behavior
     {
-        private const int CameraSmoothTimeSeconds = 3;
+        private const int CameraSmoothTimeSeconds = 4;
 
+        [BindComponent]        
+        public Transform3D cameraTransform;
+        
         private Vector3 cameraPositionCurrentVelocity;
 
         private Vector3 cameraRotationCurrentVelocity;
@@ -16,9 +19,6 @@ namespace BetiJaiDemo.Behaviors
         private Vector3 cameraTargetPosition;
 
         private Vector3 cameraTargetRotation;
-
-        [BindComponent]        
-        private Transform3D cameraTransform;
 
         private bool isCameraAnimationInProgress;
 
@@ -43,15 +43,15 @@ namespace BetiJaiDemo.Behaviors
                     this.cameraTransform.Position,
                     this.cameraTargetPosition,
                     ref this.cameraPositionCurrentVelocity,
-                    CameraSmoothTimeSeconds * 1000,
-                    (float)gameTime.TotalMilliseconds);
+                    CameraSmoothTimeSeconds,
+                    (float)gameTime.TotalSeconds);
 
                 this.cameraTransform.Rotation = Vector3.SmoothDamp(
                     this.cameraTransform.Rotation,
                     this.cameraTargetRotation,
                     ref this.cameraRotationCurrentVelocity,
-                    CameraSmoothTimeSeconds * 1000,
-                    (float)gameTime.TotalMilliseconds);
+                    CameraSmoothTimeSeconds,
+                    (float)gameTime.TotalSeconds);
 
                 if ((this.cameraTransform.Position == this.cameraTargetPosition) &&
                     (this.cameraTransform.Rotation == this.cameraTargetRotation))
