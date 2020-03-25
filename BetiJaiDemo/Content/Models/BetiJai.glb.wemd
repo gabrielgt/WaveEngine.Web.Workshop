@@ -1,0 +1,74 @@
+!WaveEngine.Assets.Exporters.ModelMetaFile,WaveEngine.Assets
+Id: 1da4ba2e-8534-4a13-b618-b92a9ccea502
+Clips: []
+DefaultProfile:
+  ExcludeAsset: false
+  Name: null
+  Platform: Undefined
+ExportAnimations: true
+ExportAsRaw: false
+GenerateTangentSpace: false
+Profiles: {}
+Source:
+  Header:
+    Id: e26b05f3-844c-4d76-a876-b953a68a0e48
+    IsCompressed: true
+  LastModified: 0001-01-01T00:00:00.0000000
+  ModelInfo:
+    Id: ff6486a0-5415-44bf-9a47-be95c3c0f9f2
+    AnimationTracks: []
+    EmbeddedResources: null
+    Materials:
+      - Item1: default material
+        Item2: aef8053d-f066-4958-81fa-bdb7f277345b
+      - Item1: 'Material #146'
+        Item2: 493bbd92-5693-41c6-bd60-1ce2ee2eb277
+      - Item1: Suelo
+        Item2: c269a3de-f713-4fcf-80f4-f7f5ff57ae49
+      - Item1: Escudos_Capiteles
+        Item2: 3cab3742-ea38-48e3-8c01-13278f1851ec
+      - Item1: skyBox
+        Item2: a4c93d42-de54-441c-8f73-f1d56be2451b
+      - Item1: Fachadas_Ladrillos
+        Item2: eaf72dc3-7ef6-4a0c-a089-d7d53b52bcbc
+      - Item1: panos_lat_front
+        Item2: c2abb93c-04ff-462e-a22a-3f1867d3bc70
+      - Item1: Resto_panos
+        Item2: 672ecc29-84b6-4d7d-8ee8-02eea9442b4e
+      - Item1: Pilastras_Balaustras
+        Item2: a9b4bf31-2ada-4e96-a68d-62606feb992e
+      - Item1: barandillas
+        Item2: 8c11b7af-d57a-4374-baea-de3c92ec7cf3
+      - Item1: Pared_Gradas_Cemento
+        Item2: 00485a68-8901-4ff4-b4e0-d2763fe7ec55
+      - Item1: Bajo_Techo_Bordes
+        Item2: 0b3763a7-f283-4770-8f71-410632d51831
+      - Item1: Fronton_ladrillos_g
+        Item2: 3ee121eb-e8ea-426f-8499-6e06be02c52f
+      - Item1: Tejado_Tejas
+        Item2: 7998cf30-c5cd-438e-a026-089bd8eb539e
+      - Item1: Escudos
+        Item2: a96e0f60-8f9b-4d63-bb76-5e30244706ca
+    Nodes:
+      - Spot001_Target
+      - PhysCamera001_Target
+      - PhysCamera002_Target
+      - PhysCamera003_Target
+      - PhysCamera004_Target
+      - Spot002_Target
+      - PhysCamera005_Target
+      - Default light
+      - oscuridad
+      - Fachadas_Ladrillos
+      - Suelo
+      - Pared_Gradas_Cemento
+      - Bajo_Techo_Bordes
+      - Escudos_Capiteles
+      - Fronton_ladrillos_g
+      - panos_lat_front
+      - Escudos
+      - Resto_panos
+      - Tejado_Tejas
+      - Pilastras_Balaustras
+      - barandillas
+SwapWindingOrder: false

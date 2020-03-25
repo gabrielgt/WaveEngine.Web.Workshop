@@ -11,14 +11,14 @@ namespace BetiJaiDemo.Behaviors
     {
         private readonly string name;
         
+        [BindComponent]
+        public Transform3D transform3D;
+
         private Camera3D activeCamera3D;
         
         private BoundingSphere boundingSphere;
         
         private MouseDispatcher mouseDispatcher;
-
-        [BindComponent]
-        private Transform3D transform3D;
 
         public HotspotBehavior(string name)
         {
@@ -29,15 +29,10 @@ namespace BetiJaiDemo.Behaviors
         {
             base.OnActivated();
 
+            this.boundingSphere = new BoundingSphere(this.transform3D.Position, this.transform3D.Scale.X / 2);
+
             this.activeCamera3D = this.Owner.Scene.Managers.RenderManager.ActiveCamera3D;
             this.mouseDispatcher = activeCamera3D.Display.MouseDispatcher;
-        }
-
-        protected override bool OnAttached()
-        {
-            this.boundingSphere = new BoundingSphere(this.transform3D.Position, 1);
-
-            return base.OnAttached();
         }
 
         protected override void Update(TimeSpan gameTime)

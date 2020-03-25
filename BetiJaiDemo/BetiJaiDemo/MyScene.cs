@@ -13,8 +13,8 @@ namespace BetiJaiDemo
 {
     public class MyScene : Scene
     {
-        private Entity hotspotsRootEntity;
-        
+        private const string HotspotTag = "hotspot";
+
         private IEnumerable<Zone> zones;
 
         internal void DisplayZone(int id)
@@ -53,21 +53,34 @@ namespace BetiJaiDemo
             var hotspots = hotspotList.Hotspots;
 
             var assetsService = Application.Current.Container.Resolve<AssetsService>();
-            var defaultMaterial = assetsService.Load<Material>(WaveContent.Materials.DefaultMaterial);
-            this.hotspotsRootEntity = this.Managers.EntityManager.Find("hotspots");
+            var material = assetsService.Load<Material>(WaveContent.Materials.HotspotMaterial);
+            
+            const float hotspotSideMeters = 2.5f;
 
             foreach (var item in hotspots)
             {
                 var rawPosition = JsonHelper.ParseVector3(item.Location);
                 FixCoordinateSystemFromBabylonJS(ref rawPosition);
 
-                var hotspotEntity = new Entity($"hotspot{item.Id}-{item.ZoneId}")
-                    .AddComponent(new CubeMesh())
-                    .AddComponent(new HotspotBehavior(item.Name))
-                    .AddComponent(new MaterialComponent() { Material = defaultMaterial } )
-                    .AddComponent(new MeshRenderer())
+                var wrapperEntity = new Entity()
+                    .AddComponent(new LookAtCameraBehavior())
                     .AddComponent(new Transform3D { Position = rawPosition });
-                this.hotspotsRootEntity.AddChild(hotspotEntity);
+
+                var hotspotEntity = new Entity($"hotspot{item.Id}-{item.ZoneId}") { Tag = HotspotTag }
+                    .AddComponent(new HotspotBehavior(item.Name))
+                    .AddComponent(new MaterialComponent() { Material = material } )
+                    .AddComponent(new MeshRenderer())
+                    .AddComponent(new PlaneMesh())
+                    // Spinner is quite usefull to understand how rotation happens in each axe
+                    //.AddComponent(new Spinner { AxisIncrease = Vector3.UnitY })
+                    .AddComponent(new Transform3D
+                    {
+                        Orientation = Quaternion.CreateFromEuler(new Vector3(MathHelper.PiOver2, MathHelper.Pi, 0)),
+                        Scale = new Vector3(hotspotSideMeters, 1, hotspotSideMeters)
+                    });
+
+                wrapperEntity.AddChild(hotspotEntity);
+                this.Managers.EntityManager.Add(wrapperEntity);
             }
         }
 
@@ -102,17 +115,18 @@ namespace BetiJaiDemo
                 cameraTravelling.FixTo(position, rotation);
             }
 
-            foreach (var hotspot in this.hotspotsRootEntity.ChildEntities)
+            var hotspots = this.Managers.EntityManager.FindAllByTag(HotspotTag);
+
+            foreach (var item in hotspots)
             {
-                hotspot.IsEnabled = false;
+                item.IsEnabled = false;
             }
 
-            var currentZoneHotspots = this.hotspotsRootEntity.ChildEntities
-                .Where(hotspot => hotspot.Name.EndsWith(zone.Id.ToString()));
+            var currentZoneHotspots = hotspots.Where(hotspot => hotspot.Name.EndsWith(zone.Id.ToString()));
 
-            foreach (var hotspot in currentZoneHotspots)
+            foreach (var item in currentZoneHotspots)
             {
-                hotspot.IsEnabled = true;
+                item.IsEnabled = true;
             }
         }
     }

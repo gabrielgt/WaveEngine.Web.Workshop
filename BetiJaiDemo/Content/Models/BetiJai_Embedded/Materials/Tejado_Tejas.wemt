@@ -1,0 +1,39 @@
+!WaveEngine.Assets.Exporters.MaterialMetaFile,WaveEngine.Assets
+Id: 7998cf30-c5cd-438e-a026-089bd8eb539e
+DefaultProfile:
+  ExcludeAsset: false
+  Name: null
+  Platform: Undefined
+ExportAsRaw: false
+MaterialInfo:
+  Id: fd4a7714-0270-490b-981d-8582ab703917
+  ActiveDirectives:
+    - LIT
+    - IBL
+    - DIFF
+  EffectID: daa1f60a-82ad-40fc-8fbb-7b85caa6de0a
+  Layer: 0db59561-b3f5-444f-b5de-e62e3a5b42bf
+  Parameters:
+    - Name: BaseColor
+      Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
+      ValueByteArray: AACAPwAAgD8AAIA/
+    - Name: EmissiveColor
+      Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
+      ValueByteArray: AAAAAAAAAAAAAAAA
+    - Name: Alpha
+      Type: System.Single
+      ValueByteArray: AACAPw==
+    - Name: Metallic
+      Type: System.Single
+      ValueByteArray: AAAAAA==
+    - Name: Roughness
+      Type: System.Single
+      ValueByteArray: GQuDPg==
+    - Name: ReferenceAlpha
+      Type: System.Single
+      ValueByteArray: AAAAAA==
+  Samplers: []
+  Textures:
+    - ID: f2973548-5c94-4348-aab4-80343c51ae20
+      Name: BaseColorTexture
+Profiles: {}
