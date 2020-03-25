@@ -1,5 +1,5 @@
 !WaveEngine.Assets.Exporters.ModelMetaFile,WaveEngine.Assets
-Id: 1da4ba2e-8534-4a13-b618-b92a9ccea502
+Id: af1ea08a-5e72-4cb2-872b-b0f11c081354
 Clips: []
 DefaultProfile:
   ExcludeAsset: false
@@ -11,44 +11,44 @@ GenerateTangentSpace: false
 Profiles: {}
 Source:
   Header:
-    Id: e26b05f3-844c-4d76-a876-b953a68a0e48
+    Id: 6f60cad3-c802-41c9-9766-a7a6df48d9b2
     IsCompressed: true
   LastModified: 0001-01-01T00:00:00.0000000
   ModelInfo:
-    Id: ff6486a0-5415-44bf-9a47-be95c3c0f9f2
+    Id: 2cfde9d8-7e02-4508-89fe-fdfbab54c49f
     AnimationTracks: []
     EmbeddedResources: null
     Materials:
       - Item1: default material
-        Item2: aef8053d-f066-4958-81fa-bdb7f277345b
+        Item2: f7a32f4b-7afe-401e-8278-8cd9c4b5e396
       - Item1: 'Material #146'
-        Item2: 493bbd92-5693-41c6-bd60-1ce2ee2eb277
+        Item2: 49f9566d-2533-40f8-8052-fbebe8299ae9
       - Item1: Suelo
-        Item2: c269a3de-f713-4fcf-80f4-f7f5ff57ae49
+        Item2: b67944df-76a0-4330-bb86-cadfc2ac3164
       - Item1: Escudos_Capiteles
-        Item2: 3cab3742-ea38-48e3-8c01-13278f1851ec
+        Item2: 80357972-a4cb-4a38-850a-578d922835a7
       - Item1: skyBox
-        Item2: a4c93d42-de54-441c-8f73-f1d56be2451b
+        Item2: e482d20a-5651-4b4b-844e-783246515f9a
       - Item1: Fachadas_Ladrillos
-        Item2: eaf72dc3-7ef6-4a0c-a089-d7d53b52bcbc
+        Item2: d01312b5-22a5-4db5-b7d0-d0bff170ce86
       - Item1: panos_lat_front
-        Item2: c2abb93c-04ff-462e-a22a-3f1867d3bc70
+        Item2: 9c0cb39c-6f2f-459c-b27d-7cd504c6ec7c
       - Item1: Resto_panos
-        Item2: 672ecc29-84b6-4d7d-8ee8-02eea9442b4e
+        Item2: ab8942ad-0e81-4006-9cfb-9f810e4a981b
       - Item1: Pilastras_Balaustras
-        Item2: a9b4bf31-2ada-4e96-a68d-62606feb992e
+        Item2: 6f158b5f-2631-4a0b-b636-73723d1e2bbd
       - Item1: barandillas
-        Item2: 8c11b7af-d57a-4374-baea-de3c92ec7cf3
+        Item2: f5cfa0c9-755a-4ee7-ab64-4b846bffaf7e
       - Item1: Pared_Gradas_Cemento
-        Item2: 00485a68-8901-4ff4-b4e0-d2763fe7ec55
+        Item2: 640fa9c1-6c53-4170-b0d1-5bc65058a0b3
       - Item1: Bajo_Techo_Bordes
-        Item2: 0b3763a7-f283-4770-8f71-410632d51831
+        Item2: 227f832d-ec1e-440a-b106-aa42504aa36c
       - Item1: Fronton_ladrillos_g
-        Item2: 3ee121eb-e8ea-426f-8499-6e06be02c52f
+        Item2: bae50014-8830-4a2f-9ac6-c742d9d0c642
       - Item1: Tejado_Tejas
-        Item2: 7998cf30-c5cd-438e-a026-089bd8eb539e
+        Item2: 3e2535c4-1b0e-442e-971a-0bb0ca6437ec
       - Item1: Escudos
-        Item2: a96e0f60-8f9b-4d63-bb76-5e30244706ca
+        Item2: 25ff5cf2-5582-48ca-8698-3ea7f0141f01
     Nodes:
       - Spot001_Target
       - PhysCamera001_Target

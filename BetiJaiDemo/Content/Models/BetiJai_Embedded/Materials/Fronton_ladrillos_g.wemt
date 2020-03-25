@@ -1,12 +1,12 @@
 !WaveEngine.Assets.Exporters.MaterialMetaFile,WaveEngine.Assets
-Id: 3ee121eb-e8ea-426f-8499-6e06be02c52f
+Id: bae50014-8830-4a2f-9ac6-c742d9d0c642
 DefaultProfile:
   ExcludeAsset: false
   Name: null
   Platform: Undefined
 ExportAsRaw: false
 MaterialInfo:
-  Id: e0e4c222-edb9-495c-88c7-2d98586e4550
+  Id: f7dee655-be95-440e-a897-b8e08a434c41
   ActiveDirectives:
     - LIT
     - IBL
@@ -34,6 +34,6 @@ MaterialInfo:
       ValueByteArray: AAAAAA==
   Samplers: []
   Textures:
-    - ID: 91a60b64-4067-4e77-aed2-3d37ba7677c1
+    - ID: 779feec0-eaed-4bc1-9f56-1a1177108420
       Name: BaseColorTexture
 Profiles: {}

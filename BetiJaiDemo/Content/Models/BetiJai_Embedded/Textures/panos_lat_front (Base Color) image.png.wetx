@@ -1,28 +1,28 @@
 !WaveEngine.Assets.Exporters.TextureMetaFile,WaveEngine.Assets
-Id: 6d6f44e0-a786-46e1-af41-708265d8b46a
+Id: 2d9ce2fb-9f5d-43c5-baab-f1ac21c81464
 DefaultProfile:
   ExcludeAsset: false
   ExportedItem: null
   Name: default
   PixelFormat: R8G8B8A8_UNorm
   Platform: Undefined
-  ScaledHeight: 512
+  ScaledHeight: 256
   ScaledPercentage: 1.0
-  ScaledWidth: 512
+  ScaledWidth: 256
   ScalingType: Original
 ExportAsRaw: false
 GenerateMipMaps: true
 NinePatchType: None
 PremultipliedAlpha: true
 Profiles: {}
-SamplerID: 02e05e14-4010-4cd3-8d88-3a733d5f689b
+SamplerID: 4bf69645-f86f-4204-bc2e-d39868ebb51f
 Source:
   Header:
-    Id: eb7062fa-3a34-4ac9-88c2-dc17d39df461
+    Id: 25ce83e0-b69a-4982-9851-cad056b4a4d7
     IsCompressed: true
   LastModified: 0001-01-01T00:00:00.0000000
   TextureInfo:
-    Id: 554f65da-e045-44b3-a3a5-fe6a16e9dbcf
+    Id: ee8d9aab-589e-4ab0-9175-41a4be4001e0
     Description:
       ArraySize: 1
       CpuAccess: None
@@ -30,11 +30,11 @@ Source:
       Faces: 1
       Flags: ShaderResource
       Format: R8G8B8A8_UNorm
-      Height: 512
+      Height: 256
       MipLevels: 1
       SampleCount: None
       Type: Texture2D
       Usage: Default
-      Width: 512
+      Width: 256
     HasData: true
     SamplerID: 9018edf8-ea96-4721-bf83-5561942432e0

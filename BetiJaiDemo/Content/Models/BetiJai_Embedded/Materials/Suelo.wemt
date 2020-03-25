@@ -1,12 +1,12 @@
 !WaveEngine.Assets.Exporters.MaterialMetaFile,WaveEngine.Assets
-Id: c269a3de-f713-4fcf-80f4-f7f5ff57ae49
+Id: b67944df-76a0-4330-bb86-cadfc2ac3164
 DefaultProfile:
   ExcludeAsset: false
   Name: null
   Platform: Undefined
 ExportAsRaw: false
 MaterialInfo:
-  Id: fee4247a-bfa3-4b48-a8b8-24d0775510a6
+  Id: c0e271ff-3f31-4be8-822d-2f82070bc6e5
   ActiveDirectives:
     - LIT
     - IBL
