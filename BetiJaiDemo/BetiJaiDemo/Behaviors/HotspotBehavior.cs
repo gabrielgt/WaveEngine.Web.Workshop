@@ -29,7 +29,7 @@ namespace BetiJaiDemo.Behaviors
         {
             base.OnActivated();
 
-            this.boundingSphere = new BoundingSphere(this.transform3D.Position, this.transform3D.Scale.X / 2);
+            this.boundingSphere = new BoundingSphere(this.transform3D.Position, (this.transform3D.Scale.X / 2) + 0.5f);
 
             this.activeCamera3D = this.Owner.Scene.Managers.RenderManager.ActiveCamera3D;
             this.mouseDispatcher = activeCamera3D.Display.MouseDispatcher;
