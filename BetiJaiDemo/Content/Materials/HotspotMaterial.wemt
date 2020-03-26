@@ -6,27 +6,27 @@ DefaultProfile:
   Platform: Undefined
 ExportAsRaw: false
 MaterialInfo:
-  Id: d64b9002-442e-4ba1-866d-398d75cc7cf0
+  Id: 4058e37e-b861-44c5-a893-5fee54fdc8e6
   ActiveDirectives:
     - DIFF
   EffectID: daa1f60a-82ad-40fc-8fbb-7b85caa6de0a
-  Layer: e35c59a9-26ab-4b4c-8210-4b1f21c31530
+  Layer: 5a3953ed-0d87-4a7a-8b79-36be2e2ba52b
   Parameters:
     - Name: World
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
       ValueByteArray: AAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAACAPw==
     - Name: WorldViewProjection
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
-      ValueByteArray: FODDQPD7wz8HwzE+er4xPgAAAACyJqM/mvH2v0jr9r9iYAhAj76MwPxQ/75zSv++Zi1KM8xRqzQf7ItAvRuPQA==
+      ValueByteArray: dYSqQAAAAAAAAAAAAAAAAAAAAACYMopADf9kvzD5ZL8AAAAAmjIKwAv/5L8u+eS/AAAAAHmCGjUf7ItAvRuPQA==
     - Name: ForwardLightMask
       Type: WaveEngine.Mathematics.UInt2,WaveEngine.Mathematics
       ValueByteArray: AQAAAAAAAAA=
     - Name: ViewProj
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
-      ValueByteArray: FOBDQPD7Qz8Hw7E9er6xPQAAAACyJiM/mvF2v0jrdr9iYIg/j74MwPxQf75zSn++Zi1KM8xRqzQf7ItAvRuPQA==
+      ValueByteArray: dYQqQAAAAAAAAAAAAAAAAAAAAACYMgpADf/kvjD55L4AAAAAmjKKvwv/ZL8u+WS/AAAAAHmCGjUf7ItAvRuPQA==
     - Name: EyePosition
       Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
-      ValueByteArray: U7nGvi4IikBCto4/
+      ValueByteArray: AAAAAAAAAEAAAIBA
     - Name: MultiviewViewProj
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
       ValueByteArray: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
