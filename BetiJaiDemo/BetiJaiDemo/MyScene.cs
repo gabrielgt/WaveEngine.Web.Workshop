@@ -1,3 +1,4 @@
+using BetiJaiDemo.Behaviors;
 using BetiJaiDemo.Models;
 using WaveEngine.Components.Graphics3D;
 using WaveEngine.Framework;
@@ -32,18 +33,23 @@ namespace BetiJaiDemo
                 var rawPosition = JsonHelper.ParseVector3(item.Location);
                 FixCoordinateSystemFromBabylonJs(ref rawPosition);
 
+                var wrapperEntity = new Entity()
+                    .AddComponent(new LookAtCameraBehavior())
+                    .AddComponent(new Transform3D {Position = rawPosition});
+
                 var hotspotEntity = new Entity($"hotspot{item.Id}-{item.ZoneId}") {Tag = HotspotTag}
                     .AddComponent(new PlaneMesh())
                     .AddComponent(new MaterialComponent {Material = material})
                     .AddComponent(
                         new Transform3D
                         {
-                            Position = rawPosition,
+                            Rotation = new Vector3(MathHelper.PiOver2, MathHelper.Pi, 0),
                             Scale = new Vector3(HotspotSideMeters, 1, HotspotSideMeters)
                         })
                     .AddComponent(new MeshRenderer());
 
-                Managers.EntityManager.Add(hotspotEntity);
+                wrapperEntity.AddChild(hotspotEntity);
+                Managers.EntityManager.Add(wrapperEntity);
             }
         }
 
