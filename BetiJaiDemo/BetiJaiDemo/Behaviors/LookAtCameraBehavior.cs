@@ -8,7 +8,8 @@ namespace BetiJaiDemo.Behaviors
     {
         private Camera3D _camera;
 
-        [BindComponent] public Transform3D Transform;
+        [BindComponent]
+        public Transform3D Transform;
 
         protected override void OnActivated()
         {

@@ -33,6 +33,9 @@ namespace BetiJaiDemo.Web
             //var xaudio = new WaveEngine.XAudio2.XAudioDevice();
             //application.Container.RegisterInstance(xaudio);
 
+            var notifier = new JavaScriptHotspotNotifier();
+            application.Container.RegisterInstance<IHotspotNotifier>(notifier);
+
             var clockTimer = Stopwatch.StartNew();
             windowsSystem.Run(
                 () =>

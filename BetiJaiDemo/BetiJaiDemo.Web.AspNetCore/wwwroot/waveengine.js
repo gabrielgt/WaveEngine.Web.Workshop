@@ -49,6 +49,19 @@ let App = {
         invoke: function (methodName, args) {
             BINDING.call_static_method(`[${this.assemblyName}] ${this.className}:${methodName}`, args);
         }
+    },
+
+    // Events received from .Net
+    hotspotClicked: function(name) {
+        $('#dialog-message').dialog({
+            buttons: {
+                'Volver al plano': function() {
+                    $(this).dialog("close");
+                }
+            },
+            modal: true,
+            title: name
+        });
     }
 };
 

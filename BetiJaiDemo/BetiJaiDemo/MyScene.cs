@@ -46,7 +46,8 @@ namespace BetiJaiDemo
                             Rotation = new Vector3(MathHelper.PiOver2, MathHelper.Pi, 0),
                             Scale = new Vector3(HotspotSideMeters, 1, HotspotSideMeters)
                         })
-                    .AddComponent(new MeshRenderer());
+                    .AddComponent(new MeshRenderer())
+                    .AddComponent(new HotspotBehavior(item.Name));
 
                 wrapperEntity.AddChild(hotspotEntity);
                 Managers.EntityManager.Add(wrapperEntity);

@@ -29,6 +29,9 @@ namespace BetiJaiDemo.Windows
             var xaudio = new XAudioDevice();
             application.Container.RegisterInstance(xaudio);
 
+            var notifier = new HotspotNotifier();
+            application.Container.RegisterInstance<IHotspotNotifier>(notifier);
+
             var clockTimer = Stopwatch.StartNew();
             windowsSystem.Run(
                 () => { application.Initialize(); },
