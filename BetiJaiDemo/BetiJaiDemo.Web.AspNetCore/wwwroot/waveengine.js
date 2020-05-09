@@ -19,6 +19,8 @@ let App = {
         this.mainCanvasId = canvasId;
         this.Program.assemblyName = assemblyName;
         this.Program.className = className;
+
+        this.bindUI();
     },
     init: function () {
         this.updateCanvasSize();
@@ -46,9 +48,32 @@ let App = {
         UpdateCanvasSize: function (canvasId) {
             this.invoke('UpdateCanvasSize', [canvasId]);
         },
+        DisplayZone: function(id) {
+            this.invoke('DisplayZone', [id]);
+        },
         invoke: function (methodName, args) {
             BINDING.call_static_method(`[${this.assemblyName}] ${this.className}:${methodName}`, args);
         }
+    },
+
+    // Subscription to dom events
+    bindUI: function () {
+        $('#zones a').click(function (event) {
+            event.preventDefault();
+
+            App.displayZone(this);
+
+            return false;
+        });
+    },
+
+    // Send events to .Net
+    displayZone: function (anchor) {
+        $('#zones a').css('color', 'initial');
+        $(anchor).css('color', '#d3592a');
+
+        let zoneId = $(anchor).data('zone');
+        this.Program.DisplayZone(zoneId);
     },
 
     // Events received from .Net

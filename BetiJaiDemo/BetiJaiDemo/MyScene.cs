@@ -1,5 +1,7 @@
 using BetiJaiDemo.Behaviors;
 using BetiJaiDemo.Models;
+using System.Collections.Generic;
+using System.Linq;
 using WaveEngine.Components.Graphics3D;
 using WaveEngine.Framework;
 using WaveEngine.Framework.Graphics;
@@ -13,11 +15,48 @@ namespace BetiJaiDemo
     {
         private const string HotspotTag = "hotspot";
         private const float HotspotSideMeters = 2;
+        private IEnumerable<Zone> _zones;
 
         protected override void CreateScene()
         {
             DisableMultithreadingStuff();
             CreateHotspots();
+            CreateZones();
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            DisplayZoneWithItsHotspots(_zones.First());
+        }
+
+        internal void DisplayZone(int id)
+        {
+            var zone = _zones.First(item => item.Id == id);
+            DisplayZoneWithItsHotspots(zone);
+        }
+
+        private void CreateZones()
+        {
+            var zoneList = JsonHelper.Deserialize<ZoneList>("Content/Raw/zones.json");
+            _zones = zoneList.Zones;
+        }
+
+        private void DisplayZoneWithItsHotspots(Zone zone)
+        {
+            // Taken from comparing betijai.babylon meshes with those imported here through FBX
+            const float scaleFactor = 1 / 100f;
+
+            var position = JsonHelper.ParseVector3(zone.Location);
+            FixCoordinateSystemFromBabylonJs(ref position);
+            position *= scaleFactor;
+
+            var rotation = JsonHelper.ParseVector3(zone.Rotate);
+            rotation *= -Vector3.One;
+            
+            var camera = Managers.RenderManager.ActiveCamera3D;
+            camera.Transform.Position = position;
+            camera.Transform.Rotation = rotation;
         }
 
         private void CreateHotspots()

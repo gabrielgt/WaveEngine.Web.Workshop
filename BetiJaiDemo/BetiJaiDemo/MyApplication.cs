@@ -7,6 +7,8 @@ namespace BetiJaiDemo
 {
     public class MyApplication : Application
     {
+        private MyScene _scene;
+
         public MyApplication()
         {
             this.Container.RegisterType<Clock>();
@@ -32,9 +34,14 @@ namespace BetiJaiDemo
             var assetsService = this.Container.Resolve<AssetsService>();
 
             // Navigate to scene
-            var scene = assetsService.Load<MyScene>(WaveContent.Scenes.MyScene_wescene);
-            ScreenContext screenContext = new ScreenContext(scene);
+            _scene = assetsService.Load<MyScene>(WaveContent.Scenes.MyScene_wescene);
+            ScreenContext screenContext = new ScreenContext(_scene);
             screenContextManager.To(screenContext);
+        }
+
+        public void DisplayZone(int id)
+        {
+            _scene.DisplayZone(id);
         }
     }
 }

@@ -13,34 +13,35 @@ namespace BetiJaiDemo.Web
     public class Program
     {
         private static readonly Dictionary<string, WebSurface> AppCanvas = new Dictionary<string, WebSurface>();
+        private static MyApplication _application;
 
         public static void Main(string canvasId)
         {
             // Create app
-            var application = new MyApplication();
+            _application = new MyApplication();
 
             // Create Services
             var windowsSystem = new WebWindowsSystem();
-            application.Container.RegisterInstance(windowsSystem);
+            _application.Container.RegisterInstance(windowsSystem);
 
             var document = (JSObject) Runtime.GetGlobalObject("document");
             var canvas = (JSObject) document.Invoke("getElementById", canvasId);
             var surface = (WebSurface) windowsSystem.CreateSurface(canvas);
             AppCanvas[canvasId] = surface;
-            ConfigureGraphicsContext(application, surface);
+            ConfigureGraphicsContext(_application, surface);
 
             // Audio is currently unsupported
             //var xaudio = new WaveEngine.XAudio2.XAudioDevice();
             //application.Container.RegisterInstance(xaudio);
 
             var notifier = new JavaScriptHotspotNotifier();
-            application.Container.RegisterInstance<IHotspotNotifier>(notifier);
+            _application.Container.RegisterInstance<IHotspotNotifier>(notifier);
 
             var clockTimer = Stopwatch.StartNew();
             windowsSystem.Run(
                 () =>
                 {
-                    application.Initialize();
+                    _application.Initialize();
                     Runtime.InvokeJS("WaveEngine.init();");
                 },
                 () =>
@@ -48,8 +49,8 @@ namespace BetiJaiDemo.Web
                     var gameTime = clockTimer.Elapsed;
                     clockTimer.Restart();
 
-                    application.UpdateFrame(gameTime);
-                    application.DrawFrame(gameTime);
+                    _application.UpdateFrame(gameTime);
+                    _application.DrawFrame(gameTime);
                 });
         }
 
@@ -59,6 +60,11 @@ namespace BetiJaiDemo.Web
             {
                 surface.RefreshSize();
             }
+        }
+
+        public static void DisplayZone(int id)
+        {
+            _application.DisplayZone(id);
         }
 
         private static void ConfigureGraphicsContext(Application application, Surface surface)

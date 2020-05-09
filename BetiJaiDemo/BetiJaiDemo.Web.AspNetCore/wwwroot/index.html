@@ -14,7 +14,24 @@
     <script defer type="text/javascript" src="waveengine/dotnet.js"></script>
 </head>
 <body>
-    <canvas id="wave-engine-canvas" oncontextmenu="return false;" tabindex="1"></canvas>
+
+    <div id="body-content">
+        <div id="zones">
+            Selecciona el área que deseas visitar:
+            <ul>
+                <li><a data-zone="1" href="">La Fachada Principal</a></li>
+                <li><a data-zone="2" href="">La Fachada Posterior</a></li>
+                <li><a data-zone="3" href="">El Callejón</a></li>
+                <li><a data-zone="4" href="">La Cancha</a></li>
+                <li><a data-zone="5" href="">La Cubierta</a></li>
+                <li><a data-zone="6" href="">Las Gradas</a></li>
+                <li><a data-zone="7" href="">La Trasera</a></li>
+            </ul>
+        </div>
+
+        <canvas id="wave-engine-canvas" oncontextmenu="return false;" tabindex="1"></canvas>
+    </div>
+
     <div id="splash">
         <div id="splash-content">
             <img src="wave-engine-splash-logo.png" />
@@ -23,9 +40,6 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        App.configure('wave-engine-canvas', 'BetiJaiDemo.Web', 'BetiJaiDemo.Web.Program');
-    </script>
 
     <div id="dialog-message" style="display: none;">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce suscipit, quam non faucibus tincidunt,
@@ -35,6 +49,10 @@
         amet, tincidunt vulputate ex. Mauris vitae fringilla sapien. Curabitur volutpat elit sed tortor
         vestibulum, in lacinia est faucibus. Nulla vehicula congue leo sit amet fermentum.
     </div>
+
+    <script type="text/javascript">
+        App.configure('wave-engine-canvas', 'BetiJaiDemo.Web', 'BetiJaiDemo.Web.Program');
+    </script>
 
 </body>
 </html>
