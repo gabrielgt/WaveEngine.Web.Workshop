@@ -12,7 +12,7 @@ namespace BetiJaiDemo.Web
 {
     public class Program
     {
-        private static readonly Dictionary<string, WebSurface> appCanvas = new Dictionary<string, WebSurface>();
+        private static readonly Dictionary<string, WebSurface> AppCanvas = new Dictionary<string, WebSurface>();
 
         public static void Main(string canvasId)
         {
@@ -23,17 +23,17 @@ namespace BetiJaiDemo.Web
             var windowsSystem = new WebWindowsSystem();
             application.Container.RegisterInstance(windowsSystem);
 
-            var document = (JSObject)Runtime.GetGlobalObject("document");
-            var canvas = (JSObject)document.Invoke("getElementById", canvasId);
-            var surface = (WebSurface)windowsSystem.CreateSurface(canvas);
-            appCanvas[canvasId] = surface;
+            var document = (JSObject) Runtime.GetGlobalObject("document");
+            var canvas = (JSObject) document.Invoke("getElementById", canvasId);
+            var surface = (WebSurface) windowsSystem.CreateSurface(canvas);
+            AppCanvas[canvasId] = surface;
             ConfigureGraphicsContext(application, surface);
 
             // Audio is currently unsupported
             //var xaudio = new WaveEngine.XAudio2.XAudioDevice();
             //application.Container.RegisterInstance(xaudio);
 
-            Stopwatch clockTimer = Stopwatch.StartNew();
+            var clockTimer = Stopwatch.StartNew();
             windowsSystem.Run(
                 () =>
                 {
@@ -52,7 +52,7 @@ namespace BetiJaiDemo.Web
 
         public void UpdateCanvasSize(string canvasId)
         {
-            if (appCanvas.TryGetValue(canvasId, out var surface))
+            if (AppCanvas.TryGetValue(canvasId, out var surface))
             {
                 surface.RefreshSize();
             }
@@ -62,7 +62,7 @@ namespace BetiJaiDemo.Web
         {
             GraphicsContext graphicsContext = new WebGLGraphicsContext();
             graphicsContext.CreateDevice();
-            SwapChainDescription swapChainDescription = new SwapChainDescription()
+            var swapChainDescription = new SwapChainDescription
             {
                 SurfaceInfo = surface.SurfaceInfo,
                 Width = surface.Width,

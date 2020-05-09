@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace BetiJaiDemo.Web.AspNetCore
 {
@@ -34,18 +29,20 @@ namespace BetiJaiDemo.Web.AspNetCore
             var provider = new FileExtensionContentTypeProvider();
             provider.Mappings[".dat"] = "application/octet-stream";
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                ContentTypeProvider = provider
-            });
+            app.UseStaticFiles(
+                new StaticFileOptions
+                {
+                    ContentTypeProvider = provider
+                });
 
             var managedPhysicalPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "waveengine", "managed");
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(managedPhysicalPath),
-                RequestPath = "/waveengine/managed", 
-                ServeUnknownFileTypes = true,
-            });
+            app.UseStaticFiles(
+                new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(managedPhysicalPath),
+                    RequestPath = "/waveengine/managed",
+                    ServeUnknownFileTypes = true,
+                });
         }
     }
 }
