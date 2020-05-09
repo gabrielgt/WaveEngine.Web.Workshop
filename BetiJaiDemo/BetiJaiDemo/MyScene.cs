@@ -27,7 +27,7 @@ namespace BetiJaiDemo
         protected override void Start()
         {
             base.Start();
-            DisplayZoneWithItsHotspots(_zones.First());
+            DisplayZoneWithItsHotspots(_zones.First(), isAnimated: false);
         }
 
         internal void DisplayZone(int id)
@@ -42,7 +42,7 @@ namespace BetiJaiDemo
             _zones = zoneList.Zones;
         }
 
-        private void DisplayZoneWithItsHotspots(Zone zone)
+        private void DisplayZoneWithItsHotspots(Zone zone, bool isAnimated = true)
         {
             // Taken from comparing betijai.babylon meshes with those imported here through FBX
             const float scaleFactor = 1 / 100f;
@@ -53,10 +53,26 @@ namespace BetiJaiDemo
 
             var rotation = JsonHelper.ParseVector3(zone.Rotate);
             rotation *= -Vector3.One;
-            
+
             var camera = Managers.RenderManager.ActiveCamera3D;
-            camera.Transform.Position = position;
-            camera.Transform.Rotation = rotation;
+            var cameraTravelling = camera.Owner.FindComponent<CameraTravellingBehavior>();
+
+            if (isAnimated)
+            {
+                cameraTravelling.AnimateTo(position, rotation);
+            }
+            else
+            {
+                cameraTravelling.FixTo(position, rotation);
+            }
+
+            ShowHotspotsByZone(zone);
+        }
+
+        private void ShowHotspotsByZone(Zone zone)
+        {
+            var hotspots = Managers.EntityManager.FindAllByTag(HotspotTag).ToList();
+            hotspots.ForEach(h => h.IsEnabled = h.Name.EndsWith($"-{zone.Id}"));
         }
 
         private void CreateHotspots()
