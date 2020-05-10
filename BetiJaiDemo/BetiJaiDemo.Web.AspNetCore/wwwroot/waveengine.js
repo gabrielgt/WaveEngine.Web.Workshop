@@ -23,6 +23,7 @@ let App = {
         this.bindUI();
     },
     init: function () {
+        $('#zones a').first().css('color', '#d3592a');
         this.updateCanvasSize();
         this.Program.Main(this.mainCanvasId);
         window.addEventListener('resize', this.resizeAppSize.bind(this));
@@ -33,11 +34,12 @@ let App = {
     },
     updateCanvasSize: function () {
         let devicePixelRatio = window.devicePixelRatio || 1;
-        $(`#${this.mainCanvasId}`)
-            .css('width', window.innerWidth + 'px')
-            .css('height', window.innerHeight + 'px')
-            .prop('width', window.innerWidth * devicePixelRatio)
-            .prop('height', window.innerHeight * devicePixelRatio);
+        let canvas = $(`#${this.mainCanvasId}`);
+        canvas
+            .css('width', window.innerWidth - 400 + 'px')
+            .css('height', window.innerHeight - 160 + 'px')
+            .prop('width', (window.innerWidth - 400) * devicePixelRatio)
+            .prop('height', (window.innerHeight - 160) * devicePixelRatio);
     },
     Program: {
         assemblyName: undefined,
