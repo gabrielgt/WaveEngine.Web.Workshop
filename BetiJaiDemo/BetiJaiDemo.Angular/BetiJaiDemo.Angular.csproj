@@ -51,4 +51,16 @@
     </ItemGroup>
   </Target>
 
+  <Target Name="CopyWasmFiles" AfterTargets="Build">
+    <ItemGroup>
+      <OutputFiles Include="..\BetiJaiDemo.Web\bin\$(Configuration)\netstandard2.0\**\*"></OutputFiles>
+      <FileWrites Include="@(OutputFiles)" />
+    </ItemGroup>
+    <Copy SourceFiles="@(OutputFiles)" DestinationFiles="wwwroot\waveengine\%(RecursiveDir)\%(Filename)%(Extension)" OverwriteReadOnlyFiles="true" />
+  </Target>
+
+  <Target Name="OverwriteRuntimeJs" AfterTargets="Build">
+    <Copy SourceFiles=".\wwwroot\runtime-custom.js" DestinationFiles="wwwroot\waveengine\runtime.js" OverwriteReadOnlyFiles="true" />
+  </Target>
+
 </Project>
