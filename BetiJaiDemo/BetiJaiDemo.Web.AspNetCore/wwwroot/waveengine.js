@@ -52,21 +52,20 @@ let App = {
     init: function () {
         this.updateCanvasSize();
         this.Program.Main(this.mainCanvasId);
-        this.resizeAppSize();
+        window.addEventListener('resize', this.resizeAppSize.bind(this));
     },
     resizeAppSize: function () {
         this.updateCanvasSize();
         this.Program.UpdateCanvasSize(this.mainCanvasId);
     },
     updateCanvasSize: function () {
-        const width = $(`#${this.mainCanvasId}`).width();
-        const height = $(`#${this.mainCanvasId}`).height();
         let devicePixelRatio = window.devicePixelRatio || 1;
-        $(`#${this.mainCanvasId}`)
-            .css('width', width + 'px')
-            .css('height', height + 'px')
-            .prop('width', width * devicePixelRatio)
-            .prop('height', height * devicePixelRatio);
+        let canvas = $(`#${this.mainCanvasId}`);
+        canvas
+            .css('width', window.innerWidth - 400 + 'px')
+            .css('height', window.innerHeight - 160 + 'px')
+            .prop('width', (window.innerWidth - 400) * devicePixelRatio)
+            .prop('height', (window.innerHeight - 160) * devicePixelRatio);
     },
     Program: {
         assemblyName: undefined,
